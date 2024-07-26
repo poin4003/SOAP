@@ -1,0 +1,126 @@
+<definitions name="StudentService"
+  targetNamespace="http://example.com/student"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="http://example.com/student"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <message name="addStudentRequest">
+    <part name="name" type="xsd:string"/>
+    <part name="age" type="xsd:int"/>
+  </message>
+
+  <message name="addStudentResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <message name="listStudentsRequest"/>
+
+  <message name="listStudentsResponse">
+    <part name="students" type="xsd:string"/>
+  </message>
+
+  <message name="updateStudentRequest">
+    <part name="id" type="xsd:int"/>
+    <part name="name" type="xsd:string"/>
+    <part name="age" type="xsd:int"/>
+  </message>
+
+  <message name="updateStudentResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <message name="deleteStudentRequest">
+    <part name="id" type="xsd:int"/>
+  </message>
+
+  <message name="deleteStudentResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <message name="getStudentByIdRequest">
+    <part name="id" type="xsd:int"/>
+  </message>
+
+  <message name="getStudentByIdResponse">
+    <part name="student" type="xsd:string"/>
+  </message>
+
+  <portType name="StudentServicePortType">
+    <operation name="addStudent">
+      <input message="tns:addStudentRequest"/>
+      <output message="tns:addStudentResponse"/>
+    </operation>
+    <operation name="listStudents">
+      <input message="tns:listStudentsRequest"/>
+      <output message="tns:listStudentsResponse"/>
+    </operation>
+    <operation name="updateStudent">
+      <input message="tns:updateStudentRequest"/>
+      <output message="tns:updateStudentResponse"/>
+    </operation>
+    <operation name="deleteStudent">
+      <input message="tns:deleteStudentRequest"/>
+      <output message="tns:deleteStudentResponse"/>
+    </operation>
+    <operation name="getStudentById">
+      <input message="tns:getStudentByIdRequest"/>
+      <output message="tns:getStudentByIdResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="StudentServiceBinding" type="tns:StudentServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="addStudent">
+      <soap:operation soapAction="http://example.com/student/addStudent"/>
+      <input>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="listStudents">
+      <soap:operation soapAction="http://example.com/student/listStudents"/>
+      <input>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="updateStudent">
+      <soap:operation soapAction="http://example.com/student/updateStudent"/>
+      <input>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="deleteStudent">
+      <soap:operation soapAction="http://example.com/student/deleteStudent"/>
+      <input>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="getStudentById">
+      <soap:operation soapAction="http://example.com/student/getStudentById"/>
+      <input>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://example.com/student" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="StudentService">
+    <port name="StudentServicePort" binding="tns:StudentServiceBinding">
+      <soap:address location="http://localhost:3002/soap"/>
+    </port>
+  </service>
+</definitions>
